@@ -1,0 +1,19 @@
+from distutils.core import setup
+from distutils.extension import Extension
+from Cython.Distutils import build_ext
+ext_modules = [
+    Extension(
+    name="a",
+    sources=["${CMAKE_CURRENT_SOURCE_DIR}/python/a_py.pyx", "${CMAKE_CURRENT_SOURCE_DIR}/src/A.cpp"],
+    include_dirs = ['${CMAKE_CURRENT_SOURCE_DIR}/src'],
+    language="c++",
+    ),
+]
+setup(
+    name = 'a',
+    version='${PROJECT_VERSION}',
+    cmdclass = {'build_ext': build_ext},
+    ext_modules = ext_modules,
+    package_dir={ 'a': '${CMAKE_CURRENT_SOURCE_DIR}' },
+)
+
